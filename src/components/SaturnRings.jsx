@@ -4,8 +4,8 @@ import * as THREE from "three"
 import { Noise } from "noisejs"
 import RingBands from "./RingBands"
 
-const RING_INNER = 12
-const RING_OUTER = 19
+const RING_INNER = 19
+const RING_OUTER = 12
 const DEBRIS_COUNT = 6000
 const DEBRIS_SIZE = 0.05
 const RING_TILT = 0.01
