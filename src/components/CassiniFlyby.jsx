@@ -5,8 +5,8 @@ import * as THREE from "three"
 
 const CAM_DURATION = 5.2
 const FLYBY_TRIGGER = CAM_DURATION + 2
-const FLYBY_DURATION = 4
-const FLYBY_SCALE = 0.06
+const FLYBY_DURATION = 7
+const FLYBY_SCALE = 0.08
 
 function easeInOutQuad(t) {
   return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
@@ -18,9 +18,15 @@ export default function CassiniFlyby() {
   const ref = useRef()
   const start = useRef(null)
 
-  const START = new THREE.Vector3(-10, 8, 35)
-  const MID = new THREE.Vector3(0, 6, 16)
-  const END = new THREE.Vector3(65, -2, 6)
+// Start: High and to the left, but deep in the background
+const START = new THREE.Vector3(-40, 15, -10) 
+
+// MID: This is the "apex" of the curve. 
+// Increasing Z to 35-45 usually brings it right against the glass.
+const MID = new THREE.Vector3(5, 0, 45) 
+
+// END: Dives down and to the right, disappearing behind/beside the camera
+const END = new THREE.Vector3(40, -15, 20)
 
   const nextPos = new THREE.Vector3()
 

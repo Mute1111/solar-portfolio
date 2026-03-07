@@ -1,33 +1,51 @@
 import { Suspense } from "react"
 import { Canvas } from "@react-three/fiber"
-import { OrbitControls, Stars, Environment } from "@react-three/drei"
+import { OrbitControls, Environment, useTexture } from "@react-three/drei"
 import { EffectComposer, Bloom } from "@react-three/postprocessing"
 import { useGLTF } from "@react-three/drei"
+import { useRef, useEffect } from "react"
+import * as THREE from "three"
+import { useFrame } from "@react-three/fiber"
 
 import CameraRig, { CAM_START_Y, CAM_START_Z } from "./CameraRig"
 import Planet from "./Planet"
 import CassiniFlyby from "./CassiniFlyby"
 
-export default function SaturnScene() {
+
+
+export default function SaturnScene({section}) {
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      <Canvas shadows camera={{ position: [0, CAM_START_Y, CAM_START_Z], fov: 35 }}>
-
+      <Canvas
+       style={{ pointerEvents: "auto" }}
+        shadows
+        dpr={[1, 2]}
+        camera={{ position: [0, CAM_START_Y, CAM_START_Z], fov: 35 }}
+        gl={{ antialias: true }}
+      >
         <color attach="background" args={["black"]} />
 
-        <ambientLight intensity={0.2} />
+      <directionalLight
+  position={[150, 120, -180]}  // slightly changed from [200, 80, -200]
+  intensity={3}
+  castShadow
+  shadow-mapSize-width={4096}
+  shadow-mapSize-height={4096}
+  shadow-bias={-0.000}        // keep original
+  shadow-radius={1000}         // keep original
+  shadow-camera-near={0.1}
+  shadow-camera-far={1000}
+  shadow-camera-left={-200}
+  shadow-camera-right={200}
+  shadow-camera-top={100}
+  shadow-camera-bottom={-100}
+/>
 
-        <directionalLight
-          position={[200, 80, -200]}
-          intensity={4}
-          castShadow
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-        />
-
-        <CameraRig />
-
+      
+       <CameraRig section={section} />
         <Suspense fallback={null}>
+       
+
           <Planet
             path="/Models/Saturn.glb"
             position={[0, 0, 0]}
@@ -39,13 +57,7 @@ export default function SaturnScene() {
           <CassiniFlyby />
         </Suspense>
 
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          enableRotate={false}
-        />
-
-        <Stars radius={500} depth={100} count={8000} factor={6} fade />
+        
 
         <Environment preset="night" />
 
