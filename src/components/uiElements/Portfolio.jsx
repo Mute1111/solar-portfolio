@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 
-// ─── Glassmorphism style (matches existing components exactly) ───────────────
 const glass = {
   backgroundColor: "rgba(255, 255, 255, 0.05)",
   border: "1px solid rgba(255, 255, 255, 0.2)",
@@ -10,497 +10,304 @@ const glass = {
   WebkitBackdropFilter: "blur(12px)",
 };
 
-// ─── Header ──────────────────────────────────────────────────────────────────
-function Header({ active, onNav }) {
-  return (
-    <div
-      style={glass}
-      className="absolute top-8 left-1/2 transform -translate-x-1/2
-                 w-11/12 max-w-5xl p-4 flex justify-between items-center
-                 pointer-events-auto z-50"
-    >
-      <h1 style={{ color: "#FFFFFF", fontSize: "1.25rem", fontWeight: 600 }}>
-        Almgdad Hassan
-      </h1>
-      <nav className="flex gap-4">
-        {["About", "Skills", "Experience", "Contact"].map((item) => (
-          <button
-            key={item}
-            onClick={() => onNav(item.toLowerCase())}
-            style={{
-              color: active === item.toLowerCase()
-                ? "#facc15"
-                : "rgba(255,255,255,0.8)",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              fontSize: "0.95rem",
-              fontFamily: "inherit",
-              transition: "color 0.2s",
-            }}
-          >
-            {item}
-          </button>
-        ))}
-      </nav>
-    </div>
-  );
-}
-
-// ─── Footer ───────────────────────────────────────────────────────────────────
-function Footer() {
-  return (
-    <div
-      style={glass}
-      className="absolute bottom-8 left-1/2 transform -translate-x-1/2
-                 w-11/12 max-w-5xl p-4 flex justify-between items-center
-                 pointer-events-auto z-50"
-    >
-      <span style={{ color: "#FFFFFF", fontSize: "0.875rem" }}>
-        © 2026 Almgdad Hassan
-      </span>
-      <div className="flex gap-4">
-        <a
-          href="https://github.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: "0.875rem" }}
-          onMouseOver={e => e.target.style.color = "#facc15"}
-          onMouseOut={e => e.target.style.color = "rgba(255,255,255,0.8)"}
-        >
-          GitHub
-        </a>
-        <a
-          href="https://linkedin.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: "0.875rem" }}
-          onMouseOver={e => e.target.style.color = "#facc15"}
-          onMouseOut={e => e.target.style.color = "rgba(255,255,255,0.8)"}
-        >
-          LinkedIn
-        </a>
-        <a
-          href="mailto:mug.zuher@gmail.com"
-          style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: "0.875rem" }}
-          onMouseOver={e => e.target.style.color = "#facc15"}
-          onMouseOut={e => e.target.style.color = "rgba(255,255,255,0.8)"}
-        >
-          Email
-        </a>
-      </div>
-    </div>
-  );
-}
-
-// ─── Section: Hero / About ────────────────────────────────────────────────────
-function AboutSection() {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4" id="about">
-      <div style={{ ...glass, maxWidth: "720px", width: "100%" }} className="p-10 text-center">
-        {/* Avatar placeholder */}
-        <div
-          style={{
-            width: "88px",
-            height: "88px",
-            borderRadius: "50%",
-            background: "rgba(250,204,21,0.15)",
-            border: "2px solid rgba(250,204,21,0.5)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "0 auto 1.5rem",
-            fontSize: "2rem",
-          }}
-        >
-          👨‍💻
-        </div>
-
-        <p style={{ color: "#facc15", fontSize: "0.85rem", letterSpacing: "0.15em", marginBottom: "0.5rem" }}>
-          HI, I'M
-        </p>
-        <h2 style={{ color: "#fff", fontSize: "2.5rem", fontWeight: 700, marginBottom: "0.5rem", lineHeight: 1.2 }}>
-          Almgdad Hassan
-        </h2>
-        <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "1rem", marginBottom: "1.5rem" }}>
-          IT Support Specialist → Aspiring Junior Web Developer
-        </p>
-
-        <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "0.95rem", lineHeight: 1.8, marginBottom: "2rem" }}>
-          I've spent 5+ years keeping systems running and helping people use technology — and along the way
-          I caught the bug for building things on the web. I've worked with PHP, MySQL, JavaScript and Python
-          in real production environments, and now I'm channelling all of that hands-on experience into becoming
-          a full-time developer. Based in Dubai 🇦🇪 and open to junior roles.
-        </p>
-
-        <div className="flex gap-3 justify-center flex-wrap">
-          <a
-            href="mailto:mug.zuher@gmail.com"
-            style={{
-              background: "rgba(250,204,21,0.15)",
-              border: "1px solid rgba(250,204,21,0.5)",
-              color: "#facc15",
-              borderRadius: "9999px",
-              padding: "0.5rem 1.4rem",
-              fontSize: "0.875rem",
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
-          >
-            Get in touch
-          </a>
-          <a
-            href="#skills"
-            style={{
-              background: "rgba(255,255,255,0.07)",
-              border: "1px solid rgba(255,255,255,0.2)",
-              color: "rgba(255,255,255,0.85)",
-              borderRadius: "9999px",
-              padding: "0.5rem 1.4rem",
-              fontSize: "0.875rem",
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
-          >
-            See my skills ↓
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Section: Skills ──────────────────────────────────────────────────────────
-const skillGroups = [
+// ── Fill in your projects here ──────────────────────────────────────────────
+const projects = [
   {
-    label: "Languages",
-    skills: ["PHP", "Python", "JavaScript", "HTML", "CSS", "SQL", "C++"],
+    title: "Project One",
+    description: "A short description of what this project does, the problem it solves, and who it's for.",
+    screenshot: "/screenshots/project1.png",
+    tags: ["React", "Tailwind", "PHP"],
+    github: "https://github.com/mute1111/",
+    demo: "https://your-live-demo.com",
   },
   {
-    label: "Databases & Tools",
-    skills: ["MySQL", "Git", "VS Code"],
+    title: "Project Two",
+    description: "A short description of what this project does, the problem it solves, and who it's for.",
+    screenshot: "/screenshots/project2.png",
+    tags: ["JavaScript", "MySQL", "CSS"],
+    github: "https://github.com/mute1111/",
+    demo: "https://your-live-demo.com",
   },
   {
-    label: "Infrastructure",
-    skills: ["LAN / Wi-Fi Admin", "Hardware Support", "System Config", "Asset Management"],
-  },
-  {
-    label: "Soft Skills",
-    skills: ["End-User Training", "Technical Writing", "Team Collaboration", "Problem Solving"],
+    title: "Project Three",
+    description: "A short description of what this project does, the problem it solves, and who it's for.",
+    screenshot: "/screenshots/project3.png",
+    tags: ["Python", "Docker", "PostgreSQL"],
+    github: "https://github.com/mute1111/",
+    demo: null, // set to null to hide demo link for a specific project
   },
 ];
+// ────────────────────────────────────────────────────────────────────────────
+
+// Cards stagger in
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { y: 44, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 75,
+      damping: 13,
+    },
+  },
+};
+
+// Tags pop in
+const tagContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.05, delayChildren: 0.08 },
+  },
+};
+
+const tagVariants = {
+  hidden: { scale: 0.7, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 180, damping: 14 },
+  },
+};
 
 function SkillTag({ label }) {
-  const [hovered, setHovered] = useState(false);
   return (
-    <span
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+    <motion.span
+      variants={tagVariants}
+      whileHover={{ scale: 1.1, y: -2 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 300, damping: 15 }}
       style={{
-        background: hovered ? "rgba(250,204,21,0.2)" : "rgba(255,255,255,0.07)",
-        border: hovered ? "1px solid rgba(250,204,21,0.6)" : "1px solid rgba(255,255,255,0.18)",
-        color: hovered ? "#facc15" : "rgba(255,255,255,0.85)",
+        background: "rgba(255, 255, 255, 0.07)",
+        border: "1px solid rgba(255, 255, 255, 0.18)",
+        color: "rgba(255, 255, 255, 0.85)",
         borderRadius: "9999px",
         padding: "0.3rem 0.85rem",
         fontSize: "0.8rem",
         cursor: "default",
-        transition: "all 0.2s",
         display: "inline-block",
+        transition: "background 0.2s, border 0.2s, color 0.2s",
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.background = "rgba(250, 204, 21, 0.2)";
+        e.currentTarget.style.border = "1px solid rgba(250, 204, 21, 0.6)";
+        e.currentTarget.style.color = "#facc15";
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)";
+        e.currentTarget.style.border = "1px solid rgba(255, 255, 255, 0.18)";
+        e.currentTarget.style.color = "rgba(255, 255, 255, 0.85)";
       }}
     >
       {label}
-    </span>
+    </motion.span>
   );
 }
 
-function SkillsSection() {
+function ProjectCard({ project }) {
   return (
-    <div className="flex flex-col items-center px-4 py-24" id="skills">
-      <div style={{ maxWidth: "800px", width: "100%" }}>
-        <SectionTitle emoji="🛠️" title="Skills & Tech" subtitle="Things I work with day-to-day" />
-        <div className="grid grid-cols-1 gap-5" style={{ marginTop: "2rem" }}>
-          {skillGroups.map((group) => (
-            <div key={group.label} style={glass} className="p-6">
-              <p style={{ color: "#facc15", fontSize: "0.75rem", letterSpacing: "0.12em", marginBottom: "1rem" }}>
-                {group.label.toUpperCase()}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {group.skills.map((s) => <SkillTag key={s} label={s} />)}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Section: Experience ──────────────────────────────────────────────────────
-const experiences = [
-  {
-    role: "IT Specialist & Lab Instructor",
-    company: "Future University",
-    location: "Khartoum, Sudan",
-    period: "2021 – 2023",
-    bullets: [
-      "Built and maintained faculty web portals using PHP, JavaScript & MySQL — supporting 200+ users and streamlining admin workflows.",
-      "Ran end-user training programmes covering Python, C++, HTML and PHP, boosting staff and student adoption rates.",
-      "Kept 200+ lab workstations running at 98%+ uptime through proactive maintenance and hands-on troubleshooting.",
-      "Managed LAN/Wi-Fi diagnostics, hardware repairs, and asset inventory with minimal downtime.",
-    ],
-  },
-  {
-    role: "IT Support Technician",
-    company: "IMC Training Center",
-    location: "Khartoum, Sudan",
-    period: "2018 – 2020",
-    bullets: [
-      "Installed, configured and maintained desktops, laptops, printers and network infrastructure for daily training operations.",
-      "Diagnosed and resolved network connectivity issues (LAN/Wi-Fi), escalating complex cases to keep disruptions minimal.",
-      "Coordinated hardware/software deployments and new user onboarding including accounts, permissions and basic training.",
-      "Built a knowledge base of support procedures, cutting average resolution time for repeat issues.",
-    ],
-  },
-];
-
-function ExperienceSection() {
-  return (
-    <div className="flex flex-col items-center px-4 py-24" id="experience">
-      <div style={{ maxWidth: "800px", width: "100%" }}>
-        <SectionTitle emoji="💼" title="Experience" subtitle="Where I've been putting it to work" />
-        <div className="flex flex-col gap-6" style={{ marginTop: "2rem" }}>
-          {experiences.map((exp) => (
-            <div key={exp.role} style={glass} className="p-7">
-              <div className="flex justify-between items-start flex-wrap gap-2" style={{ marginBottom: "0.75rem" }}>
-                <div>
-                  <h3 style={{ color: "#fff", fontSize: "1.05rem", fontWeight: 600 }}>{exp.role}</h3>
-                  <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.85rem" }}>
-                    {exp.company} · {exp.location}
-                  </p>
-                </div>
-                <span
-                  style={{
-                    background: "rgba(250,204,21,0.1)",
-                    border: "1px solid rgba(250,204,21,0.35)",
-                    color: "#facc15",
-                    borderRadius: "9999px",
-                    padding: "0.2rem 0.8rem",
-                    fontSize: "0.75rem",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {exp.period}
-                </span>
-              </div>
-              <ul style={{ paddingLeft: "1rem", margin: 0 }}>
-                {exp.bullets.map((b, i) => (
-                  <li
-                    key={i}
-                    style={{
-                      color: "rgba(255,255,255,0.75)",
-                      fontSize: "0.875rem",
-                      lineHeight: 1.7,
-                      marginBottom: "0.35rem",
-                      listStyleType: "disc",
-                    }}
-                  >
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Education card */}
-        <div style={{ ...glass, marginTop: "1.5rem" }} className="p-6">
-          <p style={{ color: "#facc15", fontSize: "0.75rem", letterSpacing: "0.12em", marginBottom: "0.75rem" }}>
-            EDUCATION
-          </p>
-          <div className="flex flex-col gap-2">
-            <div>
-              <p style={{ color: "#fff", fontSize: "0.95rem", fontWeight: 600 }}>Master of Information Systems</p>
-              <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.8rem" }}>Future University · Thesis Pending</p>
-            </div>
-            <div>
-              <p style={{ color: "#fff", fontSize: "0.95rem", fontWeight: 600 }}>Bachelor of Information Technology</p>
-              <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.8rem" }}>Future University · 2021</p>
-            </div>
-          </div>
-          <div style={{ marginTop: "1rem", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "1rem" }}>
-            <p style={{ color: "#facc15", fontSize: "0.75rem", letterSpacing: "0.12em", marginBottom: "0.5rem" }}>
-              CERTIFICATIONS
-            </p>
-            <div className="flex gap-2 flex-wrap">
-              {["CompTIA", "Google IT Support"].map((c) => (
-                <SkillTag key={c} label={c} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Section: Contact ─────────────────────────────────────────────────────────
-function ContactSection() {
-  return (
-    <div className="flex flex-col items-center px-4 py-24" id="contact">
-      <div style={{ maxWidth: "640px", width: "100%" }}>
-        <SectionTitle emoji="✉️" title="Let's talk" subtitle="I'm actively looking for junior web dev roles" />
-        <div style={{ ...glass, marginTop: "2rem" }} className="p-8 text-center">
-          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.95rem", lineHeight: 1.8, marginBottom: "2rem" }}>
-            Whether you have a role in mind, want to chat about a project, or just want to say hi —
-            my inbox is always open. I'm based in Dubai and available immediately.
-          </p>
-          <div className="flex flex-col gap-3 items-center">
-            <ContactRow icon="📧" label="mug.zuher@gmail.com" href="mailto:mug.zuher@gmail.com" />
-            <ContactRow icon="📱" label="+971 50 698 5208" href="tel:+971506985208" />
-            <ContactRow icon="🌐" label="LinkedIn" href="https://linkedin.com/" />
-            <ContactRow icon="💻" label="GitHub" href="https://github.com/" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ContactRow({ icon, label, href }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <a
-      href={href}
-      target={href.startsWith("http") ? "_blank" : undefined}
-      rel="noopener noreferrer"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+    <motion.div
       style={{
+        ...glass,
         display: "flex",
-        alignItems: "center",
-        gap: "0.75rem",
-        background: hovered ? "rgba(250,204,21,0.1)" : "rgba(255,255,255,0.05)",
-        border: hovered ? "1px solid rgba(250,204,21,0.4)" : "1px solid rgba(255,255,255,0.15)",
-        borderRadius: "9999px",
-        padding: "0.55rem 1.4rem",
-        fontSize: "0.875rem",
-        color: hovered ? "#facc15" : "rgba(255,255,255,0.85)",
-        textDecoration: "none",
-        transition: "all 0.2s",
-        minWidth: "220px",
-        justifyContent: "center",
+        flexDirection: "column",
+        overflow: "hidden",
+        flex: "1 1 300px",
+        minWidth: 0,
       }}
+      variants={cardVariants}
+      whileHover={{
+        y: -6,
+        boxShadow: "0 20px 56px 0 rgba(31, 38, 135, 0.55)",
+      }}
+      transition={{ type: "spring", stiffness: 200, damping: 18 }}
     >
-      <span>{icon}</span>
-      <span>{label}</span>
-    </a>
-  );
-}
-
-// ─── Shared helpers ───────────────────────────────────────────────────────────
-function SectionTitle({ emoji, title, subtitle }) {
-  return (
-    <div className="text-center" style={{ marginBottom: "0.5rem" }}>
-      <span style={{ fontSize: "2rem" }}>{emoji}</span>
-      <h2 style={{ color: "#fff", fontSize: "1.75rem", fontWeight: 700, margin: "0.25rem 0 0.3rem" }}>{title}</h2>
-      <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.875rem" }}>{subtitle}</p>
-    </div>
-  );
-}
-
-// ─── Animated background orbs ────────────────────────────────────────────────
-function BackgroundOrbs() {
-  return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 0, overflow: "hidden", pointerEvents: "none" }}>
-      {/* Deep background */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: "linear-gradient(135deg, #0a0a1a 0%, #0d1330 50%, #0a0a1a 100%)",
-      }} />
-      {/* Orb 1 – blue */}
-      <div style={{
-        position: "absolute", top: "-15%", left: "-10%",
-        width: "600px", height: "600px", borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)",
-        animation: "drift1 18s ease-in-out infinite",
-      }} />
-      {/* Orb 2 – purple */}
-      <div style={{
-        position: "absolute", bottom: "5%", right: "-10%",
-        width: "500px", height: "500px", borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)",
-        animation: "drift2 22s ease-in-out infinite",
-      }} />
-      {/* Orb 3 – gold accent */}
-      <div style={{
-        position: "absolute", top: "45%", left: "30%",
-        width: "300px", height: "300px", borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(250,204,21,0.07) 0%, transparent 70%)",
-        animation: "drift1 28s ease-in-out infinite reverse",
-      }} />
-      <style>{`
-        @keyframes drift1 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(40px, 30px) scale(1.05); }
-        }
-        @keyframes drift2 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(-35px, -25px) scale(1.08); }
-        }
-      `}</style>
-    </div>
-  );
-}
-
-// ─── Root ─────────────────────────────────────────────────────────────────────
-export default function Portfolio() {
-  const [activeSection, setActiveSection] = useState("about");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["about", "skills", "experience", "contact"];
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-            setActiveSection(id);
-          }
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleNav = (section) => {
-    document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  return (
-    <div style={{
-      minHeight: "100vh",
-      position: "relative",
-      fontFamily: "'Segoe UI', system-ui, sans-serif",
-    }}>
-      <BackgroundOrbs />
-
-      {/* Fixed Header */}
-      <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, pointerEvents: "none" }}>
-        <Header active={activeSection} onNav={handleNav} />
+      {/* Screenshot with zoom-on-hover */}
+      <div style={{ position: "relative", height: "180px", overflow: "hidden", borderRadius: "1.5rem 1.5rem 0 0" }}>
+        <motion.img
+          src={project.screenshot}
+          alt={project.title}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+          whileHover={{ scale: 1.06 }}
+          transition={{ type: "spring", stiffness: 120, damping: 18 }}
+        />
+        {/* Bottom gradient so card body bleeds in cleanly */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "60px",
+            background: "linear-gradient(to bottom, transparent, rgba(5, 5, 20, 0.85))",
+            pointerEvents: "none",
+          }}
+        />
       </div>
 
-      {/* Scrollable content */}
-      <div style={{ position: "relative", zIndex: 10, paddingTop: "6rem", paddingBottom: "8rem" }}>
-        <AboutSection />
-        <SkillsSection />
-        <ExperienceSection />
-        <ContactSection />
-      </div>
+      {/* Card body */}
+      <div style={{ padding: "1.25rem 1.5rem 1.5rem", display: "flex", flexDirection: "column", gap: "0.85rem", flex: 1 }}>
 
-      {/* Fixed Footer */}
-      <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 100, pointerEvents: "none" }}>
-        <Footer />
+        {/* Title */}
+        <h3 style={{ color: "#fff", fontSize: "1.05rem", fontWeight: 700, margin: 0 }}>
+          {project.title}
+        </h3>
+
+        {/* Description */}
+        <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.875rem", lineHeight: 1.7, margin: 0 }}>
+          {project.description}
+        </p>
+
+        {/* Tags */}
+        <motion.div
+          style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}
+          variants={tagContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {project.tags.map(tag => <SkillTag key={tag} label={tag} />)}
+        </motion.div>
+
+        {/* Spacer pushes buttons to bottom */}
+        <div style={{ flex: 1 }} />
+
+        {/* Link buttons */}
+        <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+          {/* GitHub */}
+          {project.github && (
+            <motion.a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              style={{
+                background: "rgba(255,255,255,0.07)",
+                border: "1px solid rgba(255,255,255,0.2)",
+                color: "rgba(255,255,255,0.85)",
+                borderRadius: "9999px",
+                padding: "0.45rem 1.1rem",
+                fontSize: "0.8rem",
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.35rem",
+                transition: "background 0.2s, border 0.2s, color 0.2s",
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.13)";
+                e.currentTarget.style.color = "#fff";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.07)";
+                e.currentTarget.style.color = "rgba(255,255,255,0.85)";
+              }}
+            >
+              💻 GitHub
+            </motion.a>
+          )}
+
+          {/* Live demo — yellow accent, matches "Get in touch" button */}
+          {project.demo && (
+            <motion.a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              style={{
+                background: "rgba(250,204,21,0.15)",
+                border: "1px solid rgba(250,204,21,0.5)",
+                color: "#facc15",
+                borderRadius: "9999px",
+                padding: "0.45rem 1.1rem",
+                fontSize: "0.8rem",
+                textDecoration: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.35rem",
+                transition: "background 0.2s, border 0.2s",
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = "rgba(250,204,21,0.25)";
+                e.currentTarget.style.border = "1px solid rgba(250,204,21,0.75)";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = "rgba(250,204,21,0.15)";
+                e.currentTarget.style.border = "1px solid rgba(250,204,21,0.5)";
+              }}
+            >
+              🚀 Live Demo
+            </motion.a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+export default function PortfolioSection() {
+  return (
+    <div className="flex flex-col items-center px-4 py-24" id="portfolio">
+      <div style={{ maxWidth: "1000px", width: "100%" }}>
+
+        {/* Section title — same pattern as every other section */}
+        <motion.div
+          className="text-center"
+          style={{ marginBottom: "2.5rem" }}
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ type: "spring", stiffness: 80, damping: 14 }}
+        >
+          <motion.span
+            style={{ fontSize: "2rem", display: "inline-block" }}
+            initial={{ scale: 0, rotate: -20 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.1 }}
+          >
+            🚀
+          </motion.span>
+          <h2 style={{ color: "#fff", fontSize: "1.75rem", fontWeight: 700, margin: "0.25rem 0 0.3rem" }}>
+            Projects
+          </h2>
+          <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.875rem" }}>
+            Things I've built
+          </p>
+        </motion.div>
+
+        {/* Cards grid — stagger in */}
+        <motion.div
+          style={{ display: "flex", flexWrap: "wrap", gap: "1.5rem", alignItems: "stretch" }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {projects.map(project => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+        </motion.div>
+
       </div>
     </div>
   );
