@@ -15,8 +15,8 @@ export default function CameraRig({ section = 0 }) {
 
   const start = useRef(null)
 
-  // manual mouse tracking
-  const mouse = useRef({ x: 0, y: 0 })
+  // manual mouse tracking + gyro tracking
+  const mouse = useRef({ x: 0, y: 0, gyroX: 0, gyroY: 0 })
 
   useEffect(() => {
 
@@ -29,7 +29,21 @@ export default function CameraRig({ section = 0 }) {
 
     window.addEventListener("mousemove", handleMove)
 
-    return () => window.removeEventListener("mousemove", handleMove)
+    // --- GYRO: added for mobile, does not affect desktop ---
+    const handleOrientation = (e) => {
+      const gamma = e.gamma ?? 0  // left/right tilt → X
+      const beta  = e.beta  ?? 0  // forward/back tilt → Y
+      mouse.current.gyroX = Math.max(-1, Math.min(1, gamma / 30))
+      mouse.current.gyroY = Math.max(-1, Math.min(1, (beta - 45) / 30))
+    }
+
+    window.addEventListener("deviceorientation", handleOrientation)
+    // ------------------------------------------------------
+
+    return () => {
+      window.removeEventListener("mousemove", handleMove)
+      window.removeEventListener("deviceorientation", handleOrientation) // added
+    }
 
   }, [])
 
@@ -61,8 +75,11 @@ export default function CameraRig({ section = 0 }) {
 
       const [sx, sy] = sectionOffsets[section] || [0, 0]
 
-      const swayX = mouse.current.x * 2
-      const swayY = mouse.current.y * 1
+      // --- GYRO: pick input source based on device, same multipliers as before ---
+      const isMobile = /Mobi|Android/i.test(navigator.userAgent)
+      const swayX = isMobile ? mouse.current.gyroX * 2 : mouse.current.x * 2
+      const swayY = isMobile ? mouse.current.gyroY * 1 : mouse.current.y * 1
+      // ---------------------------------------------------------------------------
 
       camera.position.x += ((Math.sin(t * 0.1) * 0.5 + sx + swayX) - camera.position.x) * 0.05
       camera.position.y += ((CAM_END_Y + sy + swayY) - camera.position.y) * 0.05
@@ -77,3 +94,16 @@ export default function CameraRig({ section = 0 }) {
 }
 
 export { CAM_START_Y, CAM_START_Z }
+
+// --- GYRO: iOS 13+ requires explicit permission before deviceorientation fires.
+//     Drop <RequestGyroPermission /> anywhere in your UI (e.g. a splash/intro screen).
+//     Android grants access automatically — this component is a no-op there.
+export function RequestGyroPermission({ label = "Enable Motion Controls" }) {
+  const request = async () => {
+    if (typeof DeviceOrientationEvent?.requestPermission === "function") {
+      const result = await DeviceOrientationEvent.requestPermission()
+      if (result !== "granted") console.warn("Gyroscope permission denied")
+    }
+  }
+  return <button onClick={request}>{label}</button>
+}
