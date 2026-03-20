@@ -17,7 +17,7 @@ const projects = [
     screenshot: "/Projects/Hubble.png",
     tags: ["React", "Vite", "JavaScript", "CSS"],
     github: "https://github.com/mute1111/Hubbles-Andromeda",
-    demo: "https://hubbles-andromeda-lkzz0jze5-mute1111s-projects.vercel.app/",
+    demo: "https://hubbles-andromeda.vercel.app/",
   },
   {
     title: "Company Landing Page",
@@ -25,7 +25,7 @@ const projects = [
     screenshot: "/Projects/Nova.png",
     tags: ["React", "Vite", "Tailwind CSS", "JavaScript"],
     github: "https://github.com/mute1111/company-landingPage",
-    demo: "https://company-landing-page-g9nfi82fg-mute1111s-projects.vercel.app/",
+    demo: "https://company-landing-page-flame-eight.vercel.app/",
   },
   {
     title: "Movie Explorer",
@@ -33,7 +33,7 @@ const projects = [
     screenshot: "/Projects/Movie.png",
     tags: ["React", "Vite", "Tailwind CSS", "JavaScript"],
     github: "https://github.com/mute1111/movie-explorer",
-    demo: "https://movie-explorer-2voz9idwr-mute1111s-projects.vercel.app/",
+    demo: "https://movie-explorer-eight-dusky.vercel.app/",
   },
 ];
 // ────────────────────────────────────────────────────────────────────────────
