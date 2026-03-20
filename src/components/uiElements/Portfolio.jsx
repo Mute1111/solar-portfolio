@@ -14,7 +14,7 @@ const projects = [
   {
     title: "Hubble's Andromeda",
     description: "An interactive science explainer exploring how Edwin Hubble used Cepheid variable stars to prove that Andromeda is a separate galaxy — recreating his landmark 1923 discovery.",
-    screenshot: "../public/Projects/Hubble.png",
+    screenshot: "/Projects/Hubble.png",
     tags: ["React", "Vite", "JavaScript", "CSS"],
     github: "https://github.com/mute1111/Hubbles-Andromeda",
     demo: "https://hubbles-andromeda-lkzz0jze5-mute1111s-projects.vercel.app/",
@@ -22,7 +22,7 @@ const projects = [
   {
     title: "Company Landing Page",
     description: "A clean, responsive landing page for a generic company, built with React and Tailwind CSS. A front-end practice project focused on layout, components, and modern styling.",
-    screenshot: "../public/Projects/Nova.png",
+    screenshot: "/Projects/Nova.png",
     tags: ["React", "Vite", "Tailwind CSS", "JavaScript"],
     github: "https://github.com/mute1111/company-landingPage",
     demo: "https://company-landing-page-g9nfi82fg-mute1111s-projects.vercel.app/",
@@ -30,7 +30,7 @@ const projects = [
   {
     title: "Movie Explorer",
     description: "A movie discovery app that lets users browse and search for films. Built with React and styled using Tailwind CSS.",
-    screenshot: "../public/Projects/Movie.png",
+    screenshot: "/Projects/Movie.png",
     tags: ["React", "Vite", "Tailwind CSS", "JavaScript"],
     github: "https://github.com/mute1111/movie-explorer",
     demo: "https://movie-explorer-2voz9idwr-mute1111s-projects.vercel.app/",
