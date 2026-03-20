@@ -10,31 +10,30 @@ const glass = {
   WebkitBackdropFilter: "blur(12px)",
 };
 
-// ── Fill in your projects here ──────────────────────────────────────────────
 const projects = [
   {
-    title: "Project One",
-    description: "A short description of what this project does, the problem it solves, and who it's for.",
-    screenshot: "/screenshots/project1.png",
-    tags: ["React", "Tailwind", "PHP"],
-    github: "https://github.com/mute1111/",
-    demo: "https://your-live-demo.com",
+    title: "Hubble's Andromeda",
+    description: "An interactive science explainer exploring how Edwin Hubble used Cepheid variable stars to prove that Andromeda is a separate galaxy — recreating his landmark 1923 discovery.",
+    screenshot: "../public/Projects/Hubble.png",
+    tags: ["React", "Vite", "JavaScript", "CSS"],
+    github: "https://github.com/mute1111/Hubbles-Andromeda",
+    demo: "https://hubbles-andromeda-lkzz0jze5-mute1111s-projects.vercel.app/",
   },
   {
-    title: "Project Two",
-    description: "A short description of what this project does, the problem it solves, and who it's for.",
-    screenshot: "/screenshots/project2.png",
-    tags: ["JavaScript", "MySQL", "CSS"],
-    github: "https://github.com/mute1111/",
-    demo: "https://your-live-demo.com",
+    title: "Company Landing Page",
+    description: "A clean, responsive landing page for a generic company, built with React and Tailwind CSS. A front-end practice project focused on layout, components, and modern styling.",
+    screenshot: "../public/Projects/Nova.png",
+    tags: ["React", "Vite", "Tailwind CSS", "JavaScript"],
+    github: "https://github.com/mute1111/company-landingPage",
+    demo: "https://company-landing-page-g9nfi82fg-mute1111s-projects.vercel.app/",
   },
   {
-    title: "Project Three",
-    description: "A short description of what this project does, the problem it solves, and who it's for.",
-    screenshot: "/screenshots/project3.png",
-    tags: ["Python", "Docker", "PostgreSQL"],
-    github: "https://github.com/mute1111/",
-    demo: null, // set to null to hide demo link for a specific project
+    title: "Movie Explorer",
+    description: "A movie discovery app that lets users browse and search for films. Built with React and styled using Tailwind CSS.",
+    screenshot: "../public/Projects/Movie.png",
+    tags: ["React", "Vite", "Tailwind CSS", "JavaScript"],
+    github: "https://github.com/mute1111/movie-explorer",
+    demo: "https://movie-explorer-2voz9idwr-mute1111s-projects.vercel.app/",
   },
 ];
 // ────────────────────────────────────────────────────────────────────────────

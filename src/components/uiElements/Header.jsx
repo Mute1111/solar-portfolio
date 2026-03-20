@@ -10,82 +10,50 @@ const glass = {
   WebkitBackdropFilter: "blur(12px)",
 };
 
-const navItems = ["About", "Skills", "Experience","Portfolio" ,"Contact"];
+const navItems = ["About", "Skills", "Experience", "Portfolio", "Contact"];
 
-// Matches Tailwind md: breakpoint
-const COMPACT_BREAKPOINT = 768
+const COMPACT_BREAKPOINT = 768;
 
 export default function Header({ active, onNav }) {
   const [isCompact, setIsCompact] = useState(
     () => window.innerWidth < COMPACT_BREAKPOINT
-  )
-  const [menuOpen, setMenuOpen] = useState(false)
+  );
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      const compact = window.innerWidth < COMPACT_BREAKPOINT
-      setIsCompact(compact)
-      if (!compact) setMenuOpen(false) // auto-close when going back to desktop
-    }
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+      const compact = window.innerWidth < COMPACT_BREAKPOINT;
+      setIsCompact(compact);
+      if (!compact) setMenuOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Close menu on scroll
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleScroll = () => setMenuOpen(false);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [menuOpen]);
 
   const handleNav = (section) => {
-    setMenuOpen(false)
+    setMenuOpen(false);
     if (onNav) {
-      onNav(section)
+      onNav(section);
     } else {
-      document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })
+      document.getElementById(section)?.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
     <>
-      {/* ── Left bubble: name — completely unchanged ── */}
-      <motion.div
-        style={{
-          ...glass,
-          position: "fixed",
-          top: "1.5rem",
-          left: "1.5rem",
-          padding: "0.6rem 1.4rem",
-          zIndex: 50,
-          pointerEvents: "auto",
-        }}
-        initial={{ x: -60, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 80, damping: 14, delay: 0.1 }}
-        whileHover={{ scale: 1.04, y: -2 }}
-      >
-        <motion.h1
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          style={{
-            color: "#fff",
-            fontSize: "1rem",
-            fontWeight: 600,
-            cursor: "pointer",
-            margin: 0,
-            whiteSpace: "nowrap",
-            transition: "color 0.2s",
-          }}
-          whileTap={{ scale: 0.95 }}
-          onMouseEnter={e => e.currentTarget.style.color = "#facc15"}
-          onMouseLeave={e => e.currentTarget.style.color = "#fff"}
-        >
-          Almgdad Hassan
-        </motion.h1>
-      </motion.div>
-
-      {/* ── Right bubble: desktop = original, mobile = hamburger ── */}
       {isCompact ? (
-
         // ─── MOBILE: compact pill + dropdown ───────────────────────────
         <div style={{ position: "fixed", top: "1.5rem", right: "1.5rem", zIndex: 50 }}>
-
-          {/* Hamburger pill button */}
           <motion.button
-            onClick={() => setMenuOpen(prev => !prev)}
+            onClick={() => setMenuOpen((prev) => !prev)}
             style={{
               ...glass,
               pointerEvents: "auto",
@@ -106,7 +74,6 @@ export default function Header({ active, onNav }) {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.93 }}
           >
-            {/* Animated 3-line → X icon */}
             <span style={{ display: "flex", flexDirection: "column", gap: "4px", width: "16px" }}>
               <motion.span
                 animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
@@ -127,7 +94,6 @@ export default function Header({ active, onNav }) {
             <span>Menu</span>
           </motion.button>
 
-          {/* Dropdown — springs down, exits upward */}
           <AnimatePresence>
             {menuOpen && (
               <motion.div
@@ -148,7 +114,7 @@ export default function Header({ active, onNav }) {
                 transition={{ type: "spring", stiffness: 220, damping: 18 }}
               >
                 {navItems.map((item, i) => {
-                  const isActive = active === item.toLowerCase()
+                  const isActive = active === item.toLowerCase();
                   return (
                     <motion.button
                       key={item}
@@ -171,31 +137,29 @@ export default function Header({ active, onNav }) {
                         whiteSpace: "nowrap",
                         transition: "color 0.2s, background 0.2s",
                       }}
-                      onMouseEnter={e => {
+                      onMouseEnter={(e) => {
                         if (!isActive) {
-                          e.currentTarget.style.color = "#facc15"
-                          e.currentTarget.style.background = "rgba(250,204,21,0.08)"
+                          e.currentTarget.style.color = "#facc15";
+                          e.currentTarget.style.background = "rgba(250,204,21,0.08)";
                         }
                       }}
-                      onMouseLeave={e => {
+                      onMouseLeave={(e) => {
                         if (!isActive) {
-                          e.currentTarget.style.color = "rgba(255,255,255,0.85)"
-                          e.currentTarget.style.background = "none"
+                          e.currentTarget.style.color = "rgba(255,255,255,0.85)";
+                          e.currentTarget.style.background = "none";
                         }
                       }}
                     >
                       {item}
                     </motion.button>
-                  )
+                  );
                 })}
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-
       ) : (
-
-        // ─── DESKTOP: original right bubble — zero changes ──────────────
+        // ─── DESKTOP: right nav bubble ──────────────────────────────────
         <motion.nav
           style={{
             ...glass,
@@ -241,13 +205,13 @@ export default function Header({ active, onNav }) {
                   padding: "0.3rem 0.85rem",
                   transition: "color 0.2s, background 0.2s, border 0.2s",
                 }}
-                onMouseEnter={e => {
+                onMouseEnter={(e) => {
                   if (!isActive) {
                     e.currentTarget.style.color = "#facc15";
                     e.currentTarget.style.background = "rgba(250, 204, 21, 0.08)";
                   }
                 }}
-                onMouseLeave={e => {
+                onMouseLeave={(e) => {
                   if (!isActive) {
                     e.currentTarget.style.color = "rgba(255, 255, 255, 0.8)";
                     e.currentTarget.style.background = "none";

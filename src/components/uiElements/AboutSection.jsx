@@ -123,10 +123,10 @@ export default function AboutSection() {
               marginBottom: "1.5rem",
             }}
           >
-            IT Support Specialist → Aspiring Junior Web Developer
+            Tech Enjoyer , Developer 
           </motion.p>
 
-          {/* Bio — empty for now, kept so you can fill it in */}
+         
           <motion.p
             variants={itemVariants}
             style={{
@@ -136,6 +136,7 @@ export default function AboutSection() {
               marginBottom: "2rem",
             }}
           >
+           I like building stuff. what i lack in experince i make up for in caffine and willingness to learn.
           </motion.p>
 
         <motion.p
@@ -147,7 +148,7 @@ export default function AboutSection() {
           marginBottom: "1.5rem",
            }}
             >
-           I chose Saturn for the background because it's pretty and cool. That's it.
+           Saturn is cool.. keep a lookout for Cassini
           </motion.p>
 
           {/* Buttons */}
@@ -157,7 +158,7 @@ export default function AboutSection() {
           >
             {/* Get in touch */}
             <motion.a
-              href="mailto:mug.zuher@gmail.com"
+              href="mailto:mug.zuher@gmail.com?subject=Hello%20Almogdad&body=Hi%2C%20I%20wanted%20to%20reach%20out..."
               style={{
                 background: "rgba(250, 204, 21, 0.15)",
                 border: "1px solid rgba(250, 204, 21, 0.5)",

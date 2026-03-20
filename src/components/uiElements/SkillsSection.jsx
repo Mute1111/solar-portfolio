@@ -13,19 +13,19 @@ const glass = {
 const skillGroups = [
   {
     label: "Languages",
-    skills: ["PHP", "JavaScript", "Python", "HTML", "CSS", "SQL"],
+    skills: ["JavaScript", "HTML", "CSS", "Python", "SQL"],
   },
   {
-    label: "Tools & Frameworks",
-    skills: ["React", "R3F", "Tailwind", "MySQL", "Git", "PostgreSQL", "Docker", "Linux"],
+    label: "Frameworks & Libraries",
+    skills: ["React", "Tailwind CSS", "Framer Motion", "Three.js / R3F", "Vite"],
   },
   {
-    label: "Infrastructure",
-    skills: ["Hardware Support", "System Config", "Asset Management"],
+    label: "Tools & Workflow",
+    skills: ["Git", "GitHub", "VS Code", "Figma", "Vercel", " And learning Docker! and more"],
   },
   {
     label: "Soft Skills",
-    skills: ["End-User Training", "Technical Writing", "Team Collaboration", "Problem Solving"],
+    skills: ["Problem Solving", "Team Collaboration", "Technical Writing", "Self-Learning"],
   },
 ];
 

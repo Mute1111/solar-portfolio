@@ -3,7 +3,7 @@ import SaturnScene from "./components/SaturnScene";
 
 import Header from "./components/uiElements/Header";
 import Footer from "./components/uiElements/Footer";
-
+import LoadingScreen from "./components/uiElements/LoadingScreen";
 import AboutSection     from "./components/uiElements/AboutSection";
 import ExperienceSection from "./components/uiElements/ExperienceSection";
 import ContactSection   from "./components/uiElements/ContactSection";
@@ -60,16 +60,7 @@ export default function App() {
   };
 
   // ── Loading screen ────────────────────────────────────────────────────────
-  if (loading) {
-    return (
-      <div className="w-screen h-screen flex items-center justify-center bg-[#0a0a1e] text-white">
-        <div className="flex flex-col items-center gap-5">
-          <p className="text-xl tracking-widest text-white/70">Hi There!</p>
-          <div className="w-14 h-14 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin" />
-        </div>
-      </div>
-    );
-  }
+  if (loading) return <LoadingScreen />;
 
   return (
     // Root: full viewport, dark bg, no overflow leak

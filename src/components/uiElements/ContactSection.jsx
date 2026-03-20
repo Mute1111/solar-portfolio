@@ -131,7 +131,7 @@ export default function ContactSection() {
             transition={{ type: "spring", stiffness: 80, damping: 14, delay: 0.2 }}
           >
             Whether you have a role in mind, want to chat about a project, or just want to say hi —
-            my inbox is always open. I'm based in Dubai and available immediately.
+            my inbox is always open. I'm open for remote work full time or if you just need help dont feel shy.
           </motion.p>
 
           {/* Rows stagger in one by one */}
